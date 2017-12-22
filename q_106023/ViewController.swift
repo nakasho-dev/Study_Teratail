@@ -61,6 +61,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegat
         
         button1.layer.position = CGPoint(x:self.view.bounds.width/2,y:400); //UIButtonの表示する位置を設定する.
         
+        button1.addTarget(self, action: #selector(button1WasTapped), for: .touchUpInside)
+        
         
         self.view.addSubview(button1)
         
@@ -70,7 +72,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegat
         
     }
     
-    
+    @objc private func button1WasTapped(){
+        print("Event button1WasTapped")
+        let csvText = "\(String(describing: text1.text)),\(String(describing: text2.text))"
+        let activityVC =
+            UIActivityViewController(activityItems: [csvText], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
+    }
     //改行ボタンが押された際に呼ばれる.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
