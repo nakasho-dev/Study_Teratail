@@ -22,6 +22,8 @@ class MainViewModel : ViewModel() {
         buttonEnabled.set(true)
     }
 
+    //Pickerを現在時刻に設定する
+    //onClickが発生したら実行
     fun tapButton() {
         val calendar = Calendar.getInstance()
         year.set(calendar.get(Calendar.YEAR))
@@ -30,11 +32,14 @@ class MainViewModel : ViewModel() {
         hour.set(calendar.get(Calendar.HOUR))
         minute.set(calendar.get(Calendar.MINUTE))
 
+        // 現在時刻設定中なのでボタンテキストを変更、および、ボタンを無効化
         buttonText.set("現在時刻設定中")
         buttonEnabled.set(false)
         Log.d("MainViewModel", "tapButton finished")
     }
 
+    //Pickerが動かされたら現在時刻から変更されたとしてボタンを有効化、テキストを戻す
+    //onDateChanged,onTimeChangedが発生したら実行
     fun changeDateTimePicker() {
         buttonText.set("現在時刻を設定")
         buttonEnabled.set(true)
